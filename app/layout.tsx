@@ -13,7 +13,7 @@ export default function RootLayout({
         <Script
           id="_bownow_ts"
           strategy="beforeInteractive" // Nạp ngay khi tải trang (ưu tiên thẻ head)
-          src="https://contents.bownow.jp/js/UTC_50e643367cecb5056164/trace.js"
+          src="https://contents.bownow.jp/js/UTC_1d9e0c1d1dcfe0dd1cba/trace.js"
         />
       </head>
       <body>
