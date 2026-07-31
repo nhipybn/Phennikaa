@@ -1,46 +1,23 @@
-import { Analytics } from '@vercel/analytics/next'
-import type { Metadata, Viewport } from 'next'
-import { Montserrat, Bai_Jamjuree } from 'next/font/google'
-import './globals.css'
-
-const montserrat = Montserrat({ 
-  subsets: ['latin', 'vietnamese'],
-  variable: '--font-montserrat',
-  weight: ['400', '700'],
-})
-
-const baiJamjuree = Bai_Jamjuree({
-  subsets: ['latin', 'vietnamese'],
-  variable: '--font-bai-jamjuree',
-  weight: ['400', '700'],
-})
-
-export const metadata: Metadata = {
-  title: 'Phenikaa Medical Clinic - Phòng khám đa khoa',
-  description: 'Phòng khám đa khoa Phenikaa - Nơi tin cậy cho sức khỏe của bạn và công ty',
-  generator: 'v0.app',
-}
-
-export const viewport: Viewport = {
-  colorScheme: 'light',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#0066cc' },
-  ],
-}
+import Script from 'next/script'
+import './globals.css' // hoặc các import sẵn có của bạn
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html 
-      lang="vi"
-      className={`${baiJamjuree.variable} ${montserrat.variable} bg-white`}
-    >
-      <body className="antialiased bg-white text-gray-800">
+    <html lang="vi">
+      <head>
+        {/* Nhúng mã Tracking BowNow trực tiếp vào thẻ head */}
+        <Script
+          id="_bownow_ts"
+          strategy="beforeInteractive" // Nạp ngay khi tải trang (ưu tiên thẻ head)
+          src="https://contents.bownow.jp/js/UTC_50e643367cecb5056164/trace.js"
+        />
+      </head>
+      <body>
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )
